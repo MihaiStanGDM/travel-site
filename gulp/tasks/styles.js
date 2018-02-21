@@ -6,7 +6,8 @@ autoprefixer = require('autoprefixer'),
 cssvars = require('postcss-simple-vars'),
 nested = require('postcss-nested'),
 cssImport = require('postcss-import'),
-mixins = require('postcss-mixins');
+mixins = require('postcss-mixins'),
+hexrgba = require('postcss-hexrgba');
 
 
 // this task will take our main css file, process it (pipe) using our different packages that we imported 
@@ -17,7 +18,7 @@ gulp.task('styles', function() {
   // src - where your main css file is located (the file where you actualy code)
   return gulp.src('./app/assets/styles/styles.css')
     // pipe - how do you want to process it
-    .pipe(postcss([cssImport, mixins, cssvars, nested, autoprefixer]))
+    .pipe(postcss([cssImport, mixins, cssvars, nested, hexrgba, autoprefixer]))
     // when you have an error in your css files, set up a function
     .on('error', function(errorInfo){
     	// print the error
