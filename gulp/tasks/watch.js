@@ -28,6 +28,11 @@ gulp.task('watch', function() {
     gulp.start('cssInject');
   });
 
+   // every time we modify a js file, we tell gulp to run the scripts task
+  watch('./app/assets/scripts/**/*.js', function(){
+    gulp.start('scriptsRefresh');
+  })
+
 });
 
 // create a task cssInject that is called every time we modify a css file
@@ -38,4 +43,9 @@ gulp.task('cssInject', ['styles'], function(){
   return gulp.src('./app/temp/styles/styles.css')
     // stream tells browserSync to send to the browser the new css file
     .pipe(browserSync.stream());
+});
+
+
+gulp.task('scriptsRefresh', ['scripts'], function(){
+  browserSync.reload();
 });
